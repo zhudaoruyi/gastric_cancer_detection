@@ -89,7 +89,7 @@ def generator(train_set=True, batch_size=16, widths=128, heights=128):
                     img = aug(img.astype('float32'))
                     img = img.asnumpy()
 #                img3 = np.array(img2.convert("RGB")) / 255.
-                images.append(img/255.)
+                images.append(np.array(img)/255.)
                 masks.append(0)
                 # masks.append((slide_gray == 255) < 255).astype(int))
             else:  # 从non_cancer_set中取non_cancer
@@ -107,7 +107,7 @@ def generator(train_set=True, batch_size=16, widths=128, heights=128):
                     aug = mx_image.HueJitterAug(.5)
                     img = aug(img.astype('float32'))
                     img = img.asnumpy()
-                images.append(img/255.)
+                images.append(np.array(img)/255.)
                 masks.append(1)
                 # masks.append(np.zeros((widths, heights)).astype(int))
         X = np.array(images)
